@@ -6,11 +6,9 @@ import { loadWasm } from "./wasm-loader";
 const App = () => {
   const terminalRef = useRef<HTMLDivElement>(null);
   const termInstance = useRef<Terminal | null>(null);
-  const commandBuffer = useRef("")
 
   let inputBuffer = "";
   let promptPrefix = ">> ";
-  let promptStart = 0;
 
   useEffect(() => {
     loadWasm().then(() => {
@@ -36,7 +34,6 @@ const App = () => {
     const prompt = () => {
       terminal.write(`${promptPrefix}`);
       inputBuffer = "";
-      promptStart = terminal.buffer.active.cursorX;
     }
 
 
